@@ -55,7 +55,7 @@ namespace Pet_Calc.ParserLibs
             if (double.IsNaN(value))
                 return "NaN";
 
-            if (double.IsNormal(value))
+            if (double.IsFinite(value))
             {
                 var result = Math.Round(value, _numberCountAfterPoint);
                 return result.ToString();
