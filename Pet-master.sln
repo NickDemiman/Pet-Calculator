@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet-Calc", "Pet-Calc\Pet-Calc.csproj", "{FCE51170-277E-4ED4-A1BB-246494147673}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet-CalcTests", "Pet-CalcTests\Pet-CalcTests.csproj", "{C7B040C2-2F0F-4534-8E7D-F7CBCDA43831}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCE51170-277E-4ED4-A1BB-246494147673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCE51170-277E-4ED4-A1BB-246494147673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCE51170-277E-4ED4-A1BB-246494147673}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCE51170-277E-4ED4-A1BB-246494147673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B040C2-2F0F-4534-8E7D-F7CBCDA43831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B040C2-2F0F-4534-8E7D-F7CBCDA43831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B040C2-2F0F-4534-8E7D-F7CBCDA43831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B040C2-2F0F-4534-8E7D-F7CBCDA43831}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEABB9A1-3F01-4DEE-A5A1-E4B187EC17FE}
+	EndGlobalSection
+EndGlobal
