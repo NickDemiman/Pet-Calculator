@@ -9,6 +9,10 @@ namespace Pet_Calc.ParserLibs
     {
         private const char _bracketOpen = '(';
         private const char _bracketClose = ')';
+        private const char _multiply = '*';
+        private const char _devide = '/';
+        private const char _plus = '+';
+        private const char _minus = '-';
         private List<char> _operators;
         private List<char> _numbers;
 
@@ -18,42 +22,28 @@ namespace Pet_Calc.ParserLibs
             _operators = new List<char>("+-*/^");
         }
 
-        // Недописана
         public void FixMultipleOperatorBetweenNumberAndBracket(ref string value)
         {
             StringBuilder str = new StringBuilder(value);
 
             for (int i = 0; i < str.Length; i++)
             {
-                try
-                {
-                    switch (str[i])
-                    {
-                        case '(':
-                            if (_numbers.Contains(str[i - 1]))
-                            {
-                                str.Insert(i, '*');
-                            }
-                            break;
+                if (str[i] == _bracketOpen)
+                    if (i - 1 >= 0)
+                        if (_numbers.Contains(str[i - 1]))
+                            str.Insert(i, _multiply);
 
-                        case ')':
-                            if (_numbers.Contains(str[i + 1]))
-                            {
-                                str.Insert(i + 1, '*');
-                            }
-                            break;
-                    }
-                }
-                catch (IndexOutOfRangeException)
-                {
-
-                }
+                if (str[i] == _bracketClose)
+                    if (i + 1 < str.Length)
+                        if (_numbers.Contains(str[i + 1]))
+                            str.Insert(i + 1, _multiply);
             }
             value = str.ToString();
         }
 
         public bool CheckBracketsCorrectNotation(string str)
         {
+            char buff;
             Stack<char> brackets_queue = new Stack<char>();
 
             foreach (char elem in str)
@@ -65,14 +55,8 @@ namespace Pet_Calc.ParserLibs
                         break;
 
                     case _bracketClose:
-                        try
-                        {
-                            brackets_queue.Pop();
-                        }
-                        catch (InvalidOperationException)
-                        {
+                        if (!brackets_queue.TryPop(out buff))
                             return false;
-                        }
                         break;
                 }
             }
@@ -81,41 +65,62 @@ namespace Pet_Calc.ParserLibs
             return true;
         }
 
+        private bool Check1priorityOpNotation(ref string str, int index)
+        {
+            //List<char> numbersbrackets = new List<char>("0123456789(");
+
+            if (index + 1 >= str.Length)
+                return false;
+            else
+                if (!(_numbers.Contains(str[index + 1]) || str[index + 1] == _bracketOpen ))
+                    return false;
+
+            return true;
+        }
+
+        private bool Check2priorityOpNotation(ref string str, int index)
+        {
+            if (index + 1 >= str.Length || index - 1 < 0)
+                return false;
+            else
+            {
+                bool left = "0123456789)".Contains(str[index - 1]);
+                bool right = "0123456789(+-".Contains(str[index + 1]);
+
+                if (!(left && right))
+                    return false;
+            }
+
+            return true;
+        }
+
         public bool CheckCorrectOperatorsNotation(string str)
         {
-            List<char> numbersbrackets = new List<char>("0123456789(");
+            Dictionary<char, byte> operators_priority = new Dictionary<char, byte>
+            {
+                ['+'] = 1,
+                ['-'] = 1,
+                ['*'] = 2,
+                ['/'] = 2,
+                ['^'] = 2,
+            };
+            byte priority;
 
             for (int i = 0; i < str.Length; i++)
             {
-                if (_operators.Contains(str[i]))
+                if (operators_priority.TryGetValue(str[i], out priority))
                 {
-                    if (str[i] == '+' || str[i] == '-')
+                    switch (priority)
                     {
-                        if (i+1 >= str.Length)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            if (!numbersbrackets.Contains(str[i + 1])){
+                        case 1:
+                            if (!Check1priorityOpNotation(ref str, i))
                                 return false;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (i+1>=str.Length || i - 1 < 0)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            bool left = "0123456789)".Contains(str[i - 1]);
-                            bool right = "0123456789(+-".Contains(str[i + 1]);
+                            break;
 
-                            if (!(left && right))
+                        case 2:
+                            if (!Check2priorityOpNotation(ref str, i))
                                 return false;
-                        }
+                            break;
                     }
                 }
             }

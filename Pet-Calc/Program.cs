@@ -29,6 +29,7 @@ namespace Pet_Calc
                     var parsed = parser.Parse(expression);
                     var answer = calculator.Calc(parsed);
                     Console.WriteLine(answer);
+                    Console.WriteLine('\n');
                 }
                 else
                 {

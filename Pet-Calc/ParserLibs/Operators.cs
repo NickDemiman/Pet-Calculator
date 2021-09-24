@@ -9,7 +9,7 @@ namespace Pet_Calc.ParserLibs
         public OpenBracketOperator()
         {
             value = '(';
-            _priority = 1;
+            _priority = byte.MinValue;
         }
     }
 
@@ -18,7 +18,7 @@ namespace Pet_Calc.ParserLibs
         public CloseBracketOperator()
         {
             value = ')';
-            _priority = 254;
+            _priority = byte.MaxValue;
         }
     }
 

@@ -7,6 +7,7 @@ namespace Pet_Calc.ParserLibs
 {
     public class Parser
     {
+        private const char _null = '\0';
         private List<char> _operators;
         private List<char> _numbers;
 
@@ -55,7 +56,7 @@ namespace Pet_Calc.ParserLibs
         {
             while (queue.Count != 0)
             {
-                if (queue.Peek()._priority == 1)
+                if (queue.Peek()._priority == byte.MinValue)
                 {
                     queue.Pop();
                     break;
@@ -69,46 +70,43 @@ namespace Pet_Calc.ParserLibs
 
         private void TakeAllOperatorsWithLowerPriority(ref List<BaseElements> result, ref Stack<BaseOperator> queue, BaseOperator @operator, byte top_priority)
         {
-            while (@operator._priority <= top_priority && queue.Count != 0)
-            {
-                result.Add(queue.Pop());
+            BaseOperator poped;
 
-                if (queue.Count != 0)
-                {
-                    top_priority = queue.Peek()._priority;
-                }
+            while (@operator._priority <= top_priority)
+            {
+                if (queue.TryPop(out poped))
+                    result.Add(poped);
+
+                if (queue.TryPeek(out poped))
+                    top_priority = poped._priority;
                 else
-                {
                     break;
-                }
             }
+
             queue.Push(@operator);
         }
 
         private void PushOperatorToStack(ref List<BaseElements> result, ref Stack<BaseOperator> queue, char elem)
         {
             BaseOperator operator_obj = FormOperator(elem);
-            byte top_priority = 0;
+            BaseOperator poped;
+            byte top_priority;
 
-            if (queue.Count != 0)
-            {
-                top_priority = queue.Peek()._priority;
-            }
+            top_priority = queue.TryPeek(out poped) ? poped._priority : Byte.MinValue;
 
-            if (operator_obj is CloseBracketOperator)
+            if (operator_obj._priority == byte.MaxValue)
             {
                 TakeAllOperatorsBetweenBrackets(ref result, ref queue);
+                return;
+            }
+
+            if (operator_obj._priority > top_priority || operator_obj is OpenBracketOperator)
+            {
+                queue.Push(operator_obj);
             }
             else
             {
-                if (operator_obj._priority > top_priority || operator_obj is OpenBracketOperator)
-                {
-                    queue.Push(operator_obj);
-                }
-                else
-                {
-                    TakeAllOperatorsWithLowerPriority(ref result, ref queue, operator_obj, top_priority);
-                }
+                TakeAllOperatorsWithLowerPriority(ref result, ref queue, operator_obj, top_priority);
             }
         }
 
@@ -117,12 +115,12 @@ namespace Pet_Calc.ParserLibs
             elem = expression[i];
 
             if (i - 1 < 0)
-                prev = ',';
+                prev = _null;
             else
                 prev = expression[i - 1];
 
             if (i + 1 >= expression.Length)
-                next = ',';
+                next = _null;
             else
                 next = expression[i + 1];
         }
@@ -139,7 +137,7 @@ namespace Pet_Calc.ParserLibs
 
         public Parser()
         {
-            _numbers = new List<char>("0123456789.");
+            _numbers = new List<char>("0123456789,");
             _operators = new List<char>("+-*/^()");
         }
 

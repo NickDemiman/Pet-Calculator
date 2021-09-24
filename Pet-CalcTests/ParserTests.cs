@@ -40,6 +40,7 @@ namespace Pet_CalcTests
             string expr3 = "5/(9-3^2)";
             string expr4 = "+1+2";
             string expr5 = "1*2+(3/+4)";
+            string expr6 = "-1,5^2";
 
             Parser parser = new Parser();
 
@@ -91,6 +92,13 @@ namespace Pet_CalcTests
                 new DvOperator(),
                 new AdOperator()
             };
+            
+            List<BaseElements> expected6 = new List<BaseElements>()
+            {
+                new Number(-1.5),
+                new Number(2),
+                new PowOperator(),
+            };
 
             // Act
             var actual1 = parser.Parse(expr1);
@@ -98,12 +106,14 @@ namespace Pet_CalcTests
             var actual3 = parser.Parse(expr3);
             var actual4 = parser.Parse(expr4);
             var actual5 = parser.Parse(expr5);
+            var actual6 = parser.Parse(expr6);
 
             var answer1 = IsEqual(expected1, actual1);
             var answer2 = IsEqual(expected2, actual2);
             var answer3 = IsEqual(expected3, actual3);
             var answer4 = IsEqual(expected4, actual4);
             var answer5 = IsEqual(expected5, actual5);
+            var answer6 = IsEqual(expected6, actual6);
 
             // Assert
             Assert.True(answer1);
@@ -111,6 +121,7 @@ namespace Pet_CalcTests
             Assert.True(answer3);
             Assert.True(answer4);
             Assert.True(answer5);
+            Assert.True(answer6);
         }
     }
 }
