@@ -8,12 +8,20 @@ namespace Pet_Calc.ParserLibs
     public class Parser
     {
         private const char _null = '\0';
-        private List<char> _operators;
-        private List<char> _numbers;
+        private const char _plus = '+';
+        private const char _minus = '-';
+        private const char _multiply = '*';
+        private const char _devide = '/';
+        private const char _power = '^';
+        private const char _openBracket = '(';
+        private const char _closeBracket = ')';
+
+        private readonly List<char> _operators;
+        private readonly List<char> _numbers;
 
         private void FormNumber(ref StringBuilder number_str, ref List<BaseElements> result)
         {
-            double number = new double();
+            double number;
 
             if (double.TryParse(number_str.ToString(), out number))
             {
@@ -29,22 +37,22 @@ namespace Pet_Calc.ParserLibs
         {
             switch (operator_ch)
             {
-                case '+':
+                case _plus:
                     return new AdOperator();
 
-                case '-':
+                case _minus:
                     return new SubOperator();
 
-                case '*':
+                case _multiply:
                     return new MpOperator();
 
-                case '/':
+                case _devide:
                     return new DvOperator();
 
-                case '^':
+                case _power:
                     return new PowOperator();
 
-                case '(':
+                case _openBracket:
                     return new OpenBracketOperator();
 
                 default:
@@ -52,11 +60,16 @@ namespace Pet_Calc.ParserLibs
             }
         }
 
+        /// <summary>
+        /// Выгружать все операторы из стека до тех пор, пока не будет встречена открывающая скобка
+        /// </summary>
+        /// <param name="result">Ссылка на список-результат обратной польской нотации</param>
+        /// <param name="queue">Ссылка на стек операторов</param>
         private void TakeAllOperatorsBetweenBrackets(ref List<BaseElements> result, ref Stack<BaseOperator> queue)
         {
             while (queue.Count != 0)
             {
-                if (queue.Peek()._priority == byte.MinValue)
+                if (queue.Peek()._priority == byte.MinValue)    // Встречена открывающая скобка
                 {
                     queue.Pop();
                     break;
@@ -68,6 +81,14 @@ namespace Pet_Calc.ParserLibs
             }
         }
 
+        /// <summary>
+        /// Поместить оператор в стек операторов, если приоритет этого оператора больше 0 или приоритета оператора в шапке стека.
+        /// Иначе, выгружать операторы из стека до тех пор, пока приоритет оператора в шапке стека не будет меньше или стек-пустой. 
+        /// </summary>
+        /// <param name="result">Ссылка на список-результат обратной польской нотации</param>
+        /// <param name="queue">Ссылка на стек операторов</param>
+        /// <param name="operator">Оператор, который нужно поместить в стек</param>
+        /// <param name="top_priority">Приоритет оператора, находящийся в шапке стека</param>
         private void TakeAllOperatorsWithLowerPriority(ref List<BaseElements> result, ref Stack<BaseOperator> queue, BaseOperator @operator, byte top_priority)
         {
             BaseOperator poped;
@@ -157,7 +178,7 @@ namespace Pet_Calc.ParserLibs
 
                 if (_operators.Contains(elem))
                 {
-                    if (elem == '-' || elem == '+')
+                    if (elem == _minus || elem == _plus)
                     {
                         if (!_numbers.Contains(prev))
                             number.Insert(0, elem);

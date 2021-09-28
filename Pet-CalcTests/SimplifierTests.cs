@@ -10,8 +10,9 @@ namespace Pet_CalcTests
     {
         [Theory]
         [InlineData("-((-1+2)+8)","((1-2)-8)")]
-        [InlineData("-(-(-1+2)+8)","((-1+2)+8)")]
+        [InlineData("-(-(-1+2)+8)","((-1+2)-8)")]
         [InlineData("-8+99^1-1", "-8+99^1-1")]
+        [InlineData("-(-1-3)/-1", "(1+3)/-1")]
         public void PutMinusInBracketsTests(string expression, string expected)
         {
             // Arrange

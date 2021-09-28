@@ -10,16 +10,11 @@ namespace Pet_Calc.ParserLibs
         private const char _bracketOpen = '(';
         private const char _bracketClose = ')';
         private const char _multiply = '*';
-        private const char _devide = '/';
-        private const char _plus = '+';
-        private const char _minus = '-';
-        private List<char> _operators;
         private List<char> _numbers;
 
         public StringValidator()
         {
             _numbers = new List<char>("0123456789");
-            _operators = new List<char>("+-*/^");
         }
 
         public void FixMultipleOperatorBetweenNumberAndBracket(ref string value)

@@ -6,26 +6,24 @@ namespace Pet_Calc.ParserLibs
 {
     public class Simplifier
     {
-        private List<char> _operators;
-        private List<char> _numbers;
         private const char _openBracket = '(';
         private const char _closeBracket = ')';
         private const char _plus = '+';
         private const char _minus = '-';
+        private const char _null = '\0';
         private int _minusCount;
-        private int _bracketCount;
 
         private bool defineIterationElements(ref char prev, ref char elem, ref char next, string expression, int i)
         {
             elem = expression[i];
 
             if (i - 1 < 0)
-                prev = ',';
+                prev = _null;
             else
                 prev = expression[i - 1];
 
             if (i + 1 >= expression.Length)
-                next = ',';
+                next = _null;
             else
                 next = expression[i + 1];
 
@@ -42,15 +40,13 @@ namespace Pet_Calc.ParserLibs
         public Simplifier()
         {
             _minusCount = 0;
-            _bracketCount = 0;
-            _operators = new List<char>("0123456789");
-            _numbers = new List<char>("0123456789");
         }
 
         public string PutMinusInBrackets(string expr)
         {
             StringBuilder result = new StringBuilder();
             Stack<bool> flags = new Stack<bool>();
+            List<char> numbersWithOpBracket = new List<char>("0123456789)");
             bool flag;
 
             char prev = new char();
@@ -64,36 +60,28 @@ namespace Pet_Calc.ParserLibs
                 switch (elem)
                 {
                     case _closeBracket:
-                        flags.Pop();
+                        if (flags.Pop()) _minusCount--;
                         result.Append(elem);
                         break;
 
                     case _openBracket:
-                        _bracketCount++;
-                        result.Append(elem);
                         flags.Push(false);
+                        result.Append(elem);
                         break;
 
                     case _plus:
-                        if (flag)
-                        {
-                            result.Append(_minus);
-                        }
-                        else
-                        {
-                            result.Append(_plus);
-                        }
+                        if (flag)   result.Append(_minus);
+                        else        result.Append(_plus);
                         break;
 
                     case _minus:
                         if (next == _openBracket)
                         {
                             _minusCount++;
-                            _bracketCount++;
                             i++;
 
                             flags.Push(true);
-                            if ("0123456789)".Contains(prev))
+                            if (numbersWithOpBracket.Contains(prev))
                                 result.Append(_plus);
                             result.Append(next);
                         }
@@ -123,15 +111,9 @@ namespace Pet_Calc.ParserLibs
 
         public string Simplify(string expression)
         {
-            
-            StringBuilder result = new StringBuilder();
-            string res;
+            var result = PutMinusInBrackets(expression);
 
-            res = PutMinusInBrackets(expression);
-
-            result.AppendLine(res);
-
-            return result.ToString();
+            return result;
         }
     }
 }
