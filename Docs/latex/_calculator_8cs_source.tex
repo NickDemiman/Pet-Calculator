@@ -1,0 +1,93 @@
+\hypertarget{_calculator_8cs_source}{}\doxysection{Calculator.\+cs}
+\label{_calculator_8cs_source}\index{C:/Users/hae19/source/repos/Pet-\/Calculator/Pet-\/Calc/ParserLibs/Calculator.cs@{C:/Users/hae19/source/repos/Pet-\/Calculator/Pet-\/Calc/ParserLibs/Calculator.cs}}
+\mbox{\hyperlink{_calculator_8cs}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00001}00001 \textcolor{keyword}{using }System;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00002}00002 \textcolor{keyword}{using }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00004}00004 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_pet___calc_1_1_parser_libs}{Pet\_Calc.ParserLibs}}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00006}\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_calculator}{00006}}     \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_calculator}{Calculator}}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00007}00007     \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00008}\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_calculator_a1d8e4c9688f49834aba431a1a73c48fd}{00008}}         \textcolor{keyword}{public} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_calculator_a1d8e4c9688f49834aba431a1a73c48fd}{\_numberCountAfterPoint}};}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00010}00010         \textcolor{keyword}{private} \textcolor{keywordtype}{int} FindOperator(ref List<BaseElements> list)}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00011}00011         \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00012}00012             \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00013}00013             \textcolor{keywordflow}{for} (i = 2; i < list.Count; i++)}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00014}00014             \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00015}00015                 \textcolor{keywordflow}{if} (list[i] is \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_base_operator}{BaseOperator}})}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00016}00016                 \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00017}00017                     \textcolor{keywordflow}{if} (list[i -\/ 2] is \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number}{Number}} || list[i -\/ 1] is \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number}{Number}})}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00018}00018                         \textcolor{keywordflow}{return} i;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00019}00019                 \}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00020}00020             \}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00022}00022             \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00023}00023         \}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00025}00025         \textcolor{keyword}{private} \textcolor{keywordtype}{void} PerformCorrectAction(ref List<BaseElements> parsed, \textcolor{keywordtype}{int} index)}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00026}00026         \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00027}00027             var left = (double)parsed[index -\/ 2].value;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00028}00028             var right = (double)parsed[index -\/ 1].value;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00030}00030             \textcolor{keywordflow}{if} (parsed[index] is \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_ad_operator}{AdOperator}})}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00031}00031                 parsed[index -\/ 2].value = left + right;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00033}00033             \textcolor{keywordflow}{if} (parsed[index] is \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_sub_operator}{SubOperator}})}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00034}00034                 parsed[index -\/ 2].value = left -\/ right;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00036}00036             \textcolor{keywordflow}{if} (parsed[index] is \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_dv_operator}{DvOperator}})}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00037}00037                 parsed[index -\/ 2].value = left / right;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00039}00039             \textcolor{keywordflow}{if} (parsed[index] is \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_mp_operator}{MpOperator}})}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00040}00040                 parsed[index -\/ 2].value = left * right;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00042}00042             \textcolor{keywordflow}{if} (parsed[index] is \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_pow_operator}{PowOperator}})}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00043}00043                 parsed[index -\/ 2].value = Math.Pow(left, right);}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00045}00045             parsed.RemoveAt(index);}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00046}00046             parsed.RemoveAt(index -\/ 1);}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00047}00047         \}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00049}00049         \textcolor{keyword}{private} \textcolor{keywordtype}{string} VerifyAnswer(\textcolor{keywordtype}{double} value)}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00050}00050         \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00051}00051             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{double}.IsInfinity(value))}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00052}00052                 \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Inf"{}};}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00054}00054             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{double}.IsNaN(value))}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00055}00055                 \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}NaN"{}};}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00057}00057             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{double}.IsFinite(value))}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00058}00058             \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00059}00059                 var result = Math.Round(value, \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_calculator_a1d8e4c9688f49834aba431a1a73c48fd}{\_numberCountAfterPoint}});}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00060}00060                 \textcolor{keywordflow}{return} result.ToString();}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00061}00061             \}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00063}00063             \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00064}00064         \}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00066}\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_calculator_aec03d22213c794d415fb1d8ef36a29d0}{00066}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_calculator_aec03d22213c794d415fb1d8ef36a29d0}{Calculator}}(\textcolor{keywordtype}{int} value)}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00067}00067         \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00068}00068             \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_calculator_a1d8e4c9688f49834aba431a1a73c48fd}{\_numberCountAfterPoint}} = value;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00069}00069         \}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00071}\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_calculator_a1bc5446f2dc3051be98fb3070c48e9ff}{00071}}         \textcolor{keyword}{public} \textcolor{keywordtype}{string} \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_calculator_a1bc5446f2dc3051be98fb3070c48e9ff}{Calc}}(List<BaseElements> parsed)}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00072}00072         \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00073}00073             var index = FindOperator(ref parsed);}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00075}00075             \textcolor{keywordflow}{while} (index != -\/1)}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00076}00076             \{}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00077}00077                 PerformCorrectAction(ref parsed, index);}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00078}00078                 index = FindOperator(ref parsed);}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00079}00079             \}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00081}00081             var answer = (double)parsed[0].value;}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00083}00083             \textcolor{keywordflow}{return} VerifyAnswer(answer);}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00084}00084         \}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00086}00086     \}}
+\DoxyCodeLine{\Hypertarget{_calculator_8cs_source_l00087}00087 \}}
+
+\end{DoxyCode}

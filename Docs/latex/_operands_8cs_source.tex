@@ -1,0 +1,38 @@
+\hypertarget{_operands_8cs_source}{}\doxysection{Operands.\+cs}
+\label{_operands_8cs_source}\index{C:/Users/hae19/source/repos/Pet-\/Calculator/Pet-\/Calc/ParserLibs/Operands.cs@{C:/Users/hae19/source/repos/Pet-\/Calculator/Pet-\/Calc/ParserLibs/Operands.cs}}
+\mbox{\hyperlink{_operands_8cs}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00028}00028 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_pet___calc_1_1_parser_libs}{Pet\_Calc.ParserLibs}}}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00029}00029 \{}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00034}\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number}{00034}}     \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number}{Number}} : \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_base_operand}{BaseOperand}}}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00035}00035     \{}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00040}\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number_a64a9dc3ada1ba78347a2810fe72c5a09}{00040}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number_a64a9dc3ada1ba78347a2810fe72c5a09}{Number}}(\textcolor{keywordtype}{double} x)}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00041}00041         \{}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00042}00042             \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_base_elements_aa3437e15612ae5890a6f319cbf5c642c}{value}} = x;}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00043}00043         \}}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00050}\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number_a19f6f5238aab1b8226c39919ead3b4e1}{00050}}         \textcolor{keyword}{public} \textcolor{keyword}{override} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number_a19f6f5238aab1b8226c39919ead3b4e1}{Equals}}(\textcolor{keywordtype}{object} obj)}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00051}00051         \{}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00052}00052             \textcolor{keywordflow}{if} (obj == \textcolor{keyword}{null} || !(obj is \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number}{Number}}))}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00053}00053                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00054}00054             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00055}00055                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{double})this.value == (double)((\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number}{Number}})obj).\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_base_elements_aa3437e15612ae5890a6f319cbf5c642c}{value}};}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00056}00056         \}}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00062}\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number_af8645d3c960ef081e75e7776fd5ab214}{00062}}         \textcolor{keyword}{public} \textcolor{keyword}{override} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_number_af8645d3c960ef081e75e7776fd5ab214}{GetHashCode}}()}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00063}00063         \{}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00064}00064             \textcolor{keywordflow}{return} base.GetHashCode();}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00065}00065         \}}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00066}00066     \}}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00072}\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_variable}{00072}}     \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_variable}{Variable}} : \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_base_operand}{BaseOperand}}}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00073}00073     \{}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00078}\mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_variable_ad1b9e09367820fd157e34702c0f94645}{00078}}         \textcolor{keyword}{public} \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_variable_ad1b9e09367820fd157e34702c0f94645}{Variable}}(\textcolor{keywordtype}{char} x)}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00079}00079         \{}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00080}00080             \mbox{\hyperlink{class_pet___calc_1_1_parser_libs_1_1_base_elements_aa3437e15612ae5890a6f319cbf5c642c}{value}} = x;}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00081}00081         \}}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00082}00082     \}}
+\DoxyCodeLine{\Hypertarget{_operands_8cs_source_l00083}00083 \}}
+
+\end{DoxyCode}

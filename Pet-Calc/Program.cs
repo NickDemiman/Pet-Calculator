@@ -1,4 +1,19 @@
-﻿using System;
+﻿/**
+ * \mainpage Консольный калькулятор выражений с поддержкой переменных и больших вычислений
+ * # 1. Содержание
+ * Данная программа состоит и следующих модулей:
+ * - \ref BaseElements.cs | *Незадокументирован*
+ * - \ref Calculator.cs
+ * - \ref Operands.cs | **Задокументирован**
+ * - \ref Operators.cs
+ * - \ref Parser.cs
+ * - \ref Simplifier.cs
+ * - \ref StringValidator.cs
+ * ## 1.1 Краткое описание
+ * $$T_1=\sum\limits_{i=1}^{n}{T_i}$$
+ */
+
+using System;
 using System.Collections.Generic;
 using Pet_Calc.ParserLibs;
 

@@ -1,0 +1,85 @@
+.TH "Pet_Calc.ParserLibs.BaseOperator" 3 "Ср 26 Окт 2022" "Pet-Calculator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Pet_Calc.ParserLibs.BaseOperator \- Абстрактный класс-наследник базового класса  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Базовые классы:\fBPet_Calc\&.ParserLibs\&.BaseElements\fP\&.
+.PP
+Производные классы:\fBPet_Calc\&.ParserLibs\&.AdOperator\fP, \fBPet_Calc\&.ParserLibs\&.CloseBracketOperator\fP, \fBPet_Calc\&.ParserLibs\&.DvOperator\fP, \fBPet_Calc\&.ParserLibs\&.FlagOperator\fP, \fBPet_Calc\&.ParserLibs\&.MpOperator\fP, \fBPet_Calc\&.ParserLibs\&.OpenBracketOperator\fP, \fBPet_Calc\&.ParserLibs\&.PowOperator\fP и \fBPet_Calc\&.ParserLibs\&.SubOperator\fP\&.
+.SS "Открытые члены"
+
+.in +1c
+.ti -1c
+.RI "override bool \fBEquals\fP (object obj)"
+.br
+.RI "Перегрузка оператора эквивалентности ==\&. "
+.ti -1c
+.RI "override int \fBGetHashCode\fP ()"
+.br
+.RI "Перегрузка функции хеширования объекта "
+.in -1c
+.SS "Открытые атрибуты"
+
+.in +1c
+.ti -1c
+.RI "byte \fB_priority\fP"
+.br
+.RI "Byte поле преоритета оператора при вычислении "
+.in -1c
+.SH "Подробное описание"
+.PP 
+Абстрактный класс-наследник базового класса 
+
+Данный класс нужен для определения базового класса оператора 
+.PP
+См\&. определение в файле \fBBaseElements\&.cs\fP строка \fB25\fP
+.SH "Методы"
+.PP 
+.SS "override bool Pet_Calc\&.ParserLibs\&.BaseOperator\&.Equals (object obj)"
+
+.PP
+Перегрузка оператора эквивалентности ==\&. 
+.PP
+\fBАргументы\fP
+.RS 4
+\fIobj\fP объект, стоящий справа от оператора, передается в функцию 
+.RE
+.PP
+\fBВозвращает\fP
+.RS 4
+Возвращает bool значение 
+.RE
+.PP
+
+.PP
+См\&. определение в файле \fBBaseElements\&.cs\fP строка \fB34\fP
+.SS "override int Pet_Calc\&.ParserLibs\&.BaseOperator\&.GetHashCode ()"
+
+.PP
+Перегрузка функции хеширования объекта 
+.PP
+\fBВозвращает\fP
+.RS 4
+Возвращает хеш-код от int 
+.RE
+.PP
+
+.PP
+См\&. определение в файле \fBBaseElements\&.cs\fP строка \fB46\fP
+.SH "Данные класса"
+.PP 
+.SS "byte Pet_Calc\&.ParserLibs\&.BaseOperator\&._priority"
+
+.PP
+Byte поле преоритета оператора при вычислении 
+.PP
+См\&. определение в файле \fBBaseElements\&.cs\fP строка \fB27\fP
+
+.SH "Автор"
+.PP 
+Автоматически создано Doxygen для Pet-Calculator из исходного текста\&.
